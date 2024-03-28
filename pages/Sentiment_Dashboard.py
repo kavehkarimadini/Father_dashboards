@@ -67,7 +67,7 @@ if options:
 #     print(f"Session state updated. New key: {st.session_state.sentidf_key}")
 questions_uniq = senti_df.iloc[:,0].tolist()
 questions_aliases = [question_number[:20]+"..." for question_number in questions_uniq]
-print(questions_aliases)
+# print(questions_aliases)
 # ques_alias_dict = {}
 # for key in questions_uniq:
 #     for value in questions_aliases:
