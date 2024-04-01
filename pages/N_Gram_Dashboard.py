@@ -2,6 +2,7 @@ import pandas as pd
 from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import FigureCanvasAgg
 import streamlit as st
 
 def load_data_n_gram():
@@ -76,13 +77,29 @@ def bigram_2_word_cloud(df,question):
     wordcloud = WordCloud(width = 500, height = 500,
                 background_color ='white',
                 min_font_size = 5).generate(all_text)
- 
-    # plot the WordCloud image                       
-    plt.figure(figsize = (5, 5), facecolor = None)
-    plt.imshow(wordcloud)
-    plt.axis("off")
-    plt.tight_layout(pad = 0)
-    return plt
+    return wordcloud
 
-plt_word_cloud = bigram_2_word_cloud(loaded_df,loaded_df.columns[0])
-st.pyplot(plt_word_cloud)
+options = st.multiselect(
+    'Which question you want to analyze',
+    loaded_df.columns.tolist())
+# print(len(options)==0)
+maping_dict = {}
+
+if len(options)==0:
+    st.stop()
+else:
+    for i,opt in enumerate(options):
+        maping_dict["Word_Cloud_{}".format(i)] = opt
+    st.write(maping_dict)
+    for tab,Q in zip(st.tabs(maping_dict.keys()),maping_dict.values()):
+        with tab:
+            # print(Q)
+            word_cloud = bigram_2_word_cloud(loaded_df,Q)
+                # plot the WordCloud image                       
+            plt.figure(figsize = (5, 5), facecolor = None)
+            plt.imshow(word_cloud)
+            plt.axis("off")
+            plt.tight_layout(pad = 0)
+            st.pyplot(plt)
+# plt_word_cloud = bigram_2_word_cloud(loaded_df,loaded_df.columns[0])
+# st.pyplot(plt_word_cloud)
