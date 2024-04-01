@@ -95,11 +95,14 @@ else:
         with tab:
             # print(Q)
             word_cloud = bigram_2_word_cloud(loaded_df,Q)
+            try:
                 # plot the WordCloud image                       
-            plt.figure(figsize = (5, 5), facecolor = None)
-            plt.imshow(word_cloud)
-            plt.axis("off")
-            plt.tight_layout(pad = 0)
-            st.pyplot(plt)
+                plt.figure(figsize = (5, 5), facecolor = None)
+                plt.imshow(word_cloud)
+                plt.axis("off")
+                plt.tight_layout(pad = 0)
+                st.pyplot(plt)
+            except:
+                st.rerun()
 # plt_word_cloud = bigram_2_word_cloud(loaded_df,loaded_df.columns[0])
 # st.pyplot(plt_word_cloud)
