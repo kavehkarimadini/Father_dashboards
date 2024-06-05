@@ -19,6 +19,6 @@ options = st.multiselect(
 year_df_col_names = year_df.columns.tolist()
 if options:
     year_df = year_df[year_df[year_df_col_names[-1]].isin(options)]
-fig = px.line(year_df, x=year_df_col_names[1], y=year_df_col_names[2], color=year_df_col_names[0], title='Daily Average Demand by Location')
+fig = px.line(year_df, x=year_df_col_names[1], y=year_df_col_names[2], color=year_df_col_names[-1], title='Daily Average Demand by Location')
 fig.update_layout(xaxis_title='Date', yaxis_title='Average Demand')
 st.plotly_chart(fig)
