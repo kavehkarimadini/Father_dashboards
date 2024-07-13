@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title('_Welcome_ my name is Mohammad Karimadini, We are :blue[cool] :sunglasses:')
+st.title('_Welcome_ my name is Mohammad Karimadini')
 st.stop()
 # st.switch_page("main_app.py")
 st.switch_page("pages/Charging_Cluster_Tuning_Dash.py")
